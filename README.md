@@ -49,6 +49,6 @@ md2x.parse(src);
 <%@ taglib prefix="md2x" uri="http://www.touchface.top/md2x" %>
 <md2x:md2html value="${markdown}"/>
 ~~~
-**在使用`<md2x:html/>` 标签时需要添加servlet.jsp-api**
+_在使用`<md2x:html/>` 标签时需要添加jsp-api_
 
 
