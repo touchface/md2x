@@ -8,7 +8,7 @@ A Java markdown parser
 
 ### 引入md2x的jar包
 1. 下载md2x的jar包，放入你的项目。
-2. 通过Maven添加md2x依赖。
+下载地址:[download](https://github.com/touchface/md2x/tree/master/md2x/target)
 
 ### 如何调用
 #### 1. 创建Md2x的实例，调用实例的parse方法
