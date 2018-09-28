@@ -171,13 +171,13 @@ public class InlineLexer {
 			if ((cap = this.rules.strong.exec(src)) != null) {
 				src = src.substring(cap[0].length());
 
-				if (cap[4] != null) {
+				if (cap.length>4&&cap[4] != null) {
 					text = this.output(cap[4]);
-				} else if (cap[3] != null) {
+				} else if (cap.length>3&&cap[3] != null) {
 					text = this.output(cap[3]);
-				} else if (cap[2] != null) {
+				} else if (cap.length>2&&cap[2] != null) {
 					text = this.output(cap[2]);
-				} else if (cap[1] != null) {
+				} else if (cap.length>1&&cap[1] != null) {
 					text = this.output(cap[1]);
 				}
 				out += this.renderer.strong(text);
