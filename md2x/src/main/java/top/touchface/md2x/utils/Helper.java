@@ -72,14 +72,14 @@ public class Helper {
 	public static Map<String,String> baseUrls=new HashMap<String,String>();
 	
 	public static String resolveUrl(String base,String href) {
-		if(baseUrls.containsKey(" " + base)) {
+		if(!baseUrls.containsKey(base)) {
 			if(RegexUtils.test("^[^:]+:\\/*[^/]*$",base)) {
-				baseUrls.put(" " + base,base+"/");
+				baseUrls.put(base,base+"/");
 			}else {
-				baseUrls.put(" " + base,base.replaceAll("[^/]*$",""));
+				baseUrls.put(base,base.replaceAll("[^/]*$",""));
 			}
 		}
-		base=baseUrls.get(" " + base);
+		base=baseUrls.get(base);
 		if(href.substring(0,2).equals("//")) {
 			return base.replaceAll(":[\\s\\S]*",":")+href;
 		}else if(href.charAt(0)=='/') {
