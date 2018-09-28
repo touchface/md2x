@@ -27,7 +27,7 @@ public class Options implements Cloneable{
     public boolean smartLists=false;
     public boolean smartypants=false;
     public boolean tables=true;
-    public boolean xhtml=true;
+    public boolean xhtml=false;
 	@Override
 	public Options clone(){
 		
