@@ -41,6 +41,50 @@ public class Md2x {
 		this.lexer=new BlockLexer(this.options);
 		this.parser=new Parser(options);
 	}
+	/**
+	 * The static method to parse markdown to HTML
+	 * 
+	 * @param src markdown text
+	 * @param options settings
+	 * @return result
+	 */
+	public static String parseToHtml(String src,Options options){
+		Md2x md2x=new Md2x(options);
+		return md2x.parse(src);
+	}
+	/**
+	 * The static method to parse markdown to HTML
+	 * using the default settings.
+	 * 
+	 * @param src markdown text
+	 * @return result
+	 */
+	public static String parseToHtml(String src){
+		Md2x md2x=new Md2x();
+		return md2x.parse(src);
+	}
+	/**
+	 * The static method to parse markdown to HTML
+	 * 
+	 * @param file markdown file
+	 * @param options settings
+	 * @return result
+	 */
+	public static String parseToHtml(File file,Options options){
+		Md2x md2x=new Md2x(options);
+		return md2x.parse(file);
+	}
+	/**
+	 * The static method to parse markdown to HTML
+	 * using the default settings.
+	 * 
+	 * @param file markdown file
+	 * @return result
+	 */
+	public static String parseToHtml(File file){
+		Md2x md2x=new Md2x();
+		return md2x.parse(file);
+	}
 	
 	/**
 	 * Parsing markdown tags into HTML tags
