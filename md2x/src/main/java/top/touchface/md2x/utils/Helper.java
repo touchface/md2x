@@ -80,6 +80,7 @@ public class Helper {
 			}
 		}
 		base=baseUrls.get(base);
+		href=href.replace("\\","/");
 		if(href.substring(0,2).equals("//")) {
 			return base.replaceAll(":[\\s\\S]*",":")+href;
 		}else if(href.charAt(0)=='/') {
