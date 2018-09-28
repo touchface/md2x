@@ -1,19 +1,48 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
-    version="2.0">
-    <tlib-version>1.0</tlib-version>
-    <short-name>md2x</short-name>
-    <uri>http://www.touchface.top/md2x</uri>
-    <tag>
-        <name>md2html</name>
-        <tag-class>top.touchface.md2x.tag.Md2xTag</tag-class>
-        <body-content>scriptless</body-content>
-        <attribute>
-        	<name>value</name>
-        	<required>false</required>
-        	<rtexprvalue>true</rtexprvalue>
-        </attribute>
-    </tag>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+	version="2.0">
+	<tlib-version>1.0</tlib-version>
+	<short-name>md2x</short-name>
+	<uri>http://www.touchface.top/md2x</uri>
+	<tag>
+		<name>md2html</name>
+		<tag-class>top.touchface.md2x.tag.Md2xTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<name>value</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>gfm</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<name>pedantic</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<name>headerIds</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<name>headerPrefix</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>baseUrl</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+	</tag>
 </taglib>
