@@ -1,6 +1,6 @@
 # md2x
 
-> **Md2x** 是一款运行于Java平台上的轻量级markdown解析器，能够通过简单的调用方式将markdown标记解析为HTML标记。在代码的设计与实现参考了marked.js 的源码，使用了marked.js中的 正则表达式来分析markdown文档进行，以及相似的方法进行解析渲染，编写它的最初目的就是为了在Java中还原一个marked.js。支持标准的语法，GFM的语法和Pedantic语法。
+> **Md2x** 是一款运行于Java平台上的轻量级markdown解析器，能够通过简单的调用方式将markdown标记解析为HTML标记。在代码的设计与实现参考了marked.js 的源码，使用了marked.js中的 正则表达式来分析markdown文档进行，以及相似的方法进行解析渲染，编写它的最初目的就是为了在Java中还原一个marked.js。
 
 ## 1. 如何使用Md2x
 
