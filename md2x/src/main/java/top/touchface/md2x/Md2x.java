@@ -10,7 +10,7 @@ import top.touchface.md2x.lexer.BlockLexer;
 
 
 /**
- * Md2x a markdown parser.
+ * Md2x一款Markdown解析器
  * 
  * @author touchface
  * @date 2018-09-26 20:29
@@ -32,9 +32,9 @@ public class Md2x {
 	}
 	
 	/**
-	 * The constructor receives the user to set parameters for the parser.
+	 * 构造函数，接受设置参数对分词器和解析器进行设置
 	 * 
-	 * @param options
+	 * @param options 设置
 	 */
 	public Md2x(Options options) {
 		this.options=options;
@@ -42,44 +42,44 @@ public class Md2x {
 		this.parser=new Parser(options);
 	}
 	/**
-	 * The static method to parse markdown to HTML
+	 * 静态方法，用于MARKDOWN转换为HTML。
 	 * 
-	 * @param src markdown text
-	 * @param options settings
-	 * @return result
+	 * @param src MARKDOWN文本
+	 * @param options 设置
+	 * @return result HTML标记
 	 */
 	public static String parseToHtml(String src,Options options){
 		Md2x md2x=new Md2x(options);
 		return md2x.parse(src);
 	}
 	/**
-	 * The static method to parse markdown to HTML
-	 * using the default settings.
+	 * 静态方法，用于MARKDOWN转换为HTM，使用默认的设置进行解析。
 	 * 
-	 * @param src markdown text
-	 * @return result
+	 * @param src MARKDOWN文本
+	 * @return result HTML标记
 	 */
 	public static String parseToHtml(String src){
 		Md2x md2x=new Md2x();
 		return md2x.parse(src);
 	}
+	
 	/**
-	 * The static method to parse markdown to HTML
+	 * 静态方法，读取MARKDOWN文档中的标记，解析为HTML。
 	 * 
-	 * @param file markdown file
-	 * @param options settings
-	 * @return result
+	 * @param file MARKDOWN文件
+	 * @param options 设置
+	 * @return result HTML标记
 	 */
 	public static String parseToHtml(File file,Options options){
 		Md2x md2x=new Md2x(options);
 		return md2x.parse(file);
 	}
+	
 	/**
-	 * The static method to parse markdown to HTML
-	 * using the default settings.
+	 * 静态方法，读取MARKDOWN文档中的标记，解析为HTML,使用默认设置进行解析。
 	 * 
-	 * @param file markdown file
-	 * @return result
+	 * @param file  MARKDOWN文件
+	 * @return result HTML标记
 	 */
 	public static String parseToHtml(File file){
 		Md2x md2x=new Md2x();
@@ -87,10 +87,10 @@ public class Md2x {
 	}
 	
 	/**
-	 * Parsing markdown tags into HTML tags
+	 * 将MARKDOWN标记解析为HTML标记
 	 * 
-	 * @param src markdown text
-	 * @return html
+	 * @param src MARKDOWN标记
+	 * @return HTML标记
 	 */
 	public String parse(String src) {
 		
@@ -101,22 +101,21 @@ public class Md2x {
 	}
 	
 	/**
-	 * Get the markdown text from the file, which is parsed as HTML.
+	 * 读取MARKDOWN文档中的标记，解析为HTML标记
 	 * 
-	 * @param file markdown file
-	 * @return html
+	 * @param file MARKDOWN文件
+	 * @return HTML标记
 	 */
 	public String parse(File file) {
 		
 		return this.parse(readFile(file));
 		
 	}
-	
 	/**
-	 * Read the markdown text in the Markdown file.
-	 *
-	 * @param file
-	 * @return markdown文本
+	 * 读取MARKDOWN文件中的文本
+	 * 
+	 * @param file MARKDOWN文件
+	 * @return MARKDOWN文本
 	 */
 	private String readFile(File file) {
 		

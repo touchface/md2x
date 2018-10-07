@@ -6,14 +6,19 @@ import java.util.Map;
 import java.util.regex.Pattern;
 
 /**
- * Helpers
+ * 工具类
  * 
  * @author touchface
  * @date 2018-09-26 21:38
  */
 public class Helper {
 	
-
+	/**
+	 * 分割一行表格
+	 * @param tableRow
+	 * @param count
+	 * @return
+	 */
 	public static List<String> splitCells(String tableRow, int count) {
 
 		String cells[] = tableRow.replaceAll("([^\\\\])\\|", "$1 |").split(" +\\| *");
@@ -28,7 +33,11 @@ public class Helper {
 		}
 		return lcells;
 	}
-
+	/**
+	 * 分割一行表格
+	 * @param tableRow
+	 * @return
+	 */
 	public static List<String> splitCells(String tableRow) {
 		String cells[] = tableRow.replaceAll("([^\\\\])\\|", "$1 |").split(" +\\| *");
 		for (int i = 0; i < cells.length; i++) {

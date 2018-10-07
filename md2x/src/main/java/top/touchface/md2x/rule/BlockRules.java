@@ -3,7 +3,7 @@ package top.touchface.md2x.rule;
 import java.util.regex.Pattern;
 
 /**
- * Block grammar
+ * MARKDOWN块级元素语法
  * 
  * @author touchface
  * @date 2018-09-26 21:01

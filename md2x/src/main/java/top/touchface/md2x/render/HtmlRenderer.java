@@ -7,7 +7,7 @@ import java.net.URLEncoder;
 import top.touchface.md2x.entity.Options;
 import top.touchface.md2x.utils.Helper;
 /**
- * Html render
+ * HTML渲染器
  * 
  * @author touchface
  * @date 2018-09-26 21:00

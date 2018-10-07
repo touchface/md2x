@@ -1,21 +1,19 @@
-package top.touchface.md2x.rule;
 /**
- * Because I had the need to parse the markdwon document,
- * I found the marked.js project on the github and found
- * it very convenient to use, so I read the code and wrote
- * a Java version of it.
- * 
- * The following is the license declaration of marked.js.
- * 
- */
-/////////////////////////////////////////////////////////////
-/**
+ * 本解析器的设计和实现参考了marked.js的源码，项目中使用它的的正则表达式对MARKDOWN标记进行匹配。
+ * 这是一个非常好的markdown解析器开源项目
+ * 以下为marked项目的LISENCE: 
+ *-----------------------------------------------------------------------
+ *
  * marked - a markdown parser
  * Copyright (c) 2011-2018, Christopher Jeffrey. (MIT Licensed)
  * https://github.com/markedjs/marked
+ * 
+ * ----------------------------------------------------------------------
  */
-/////////////////////////////////////////////////////////////
-
+package top.touchface.md2x.rule;
+/**
+ * 对MARKDOWN标记进行匹配的正则表达式库，包含了对各种标记进行匹配的正则表达式
+ */
 public class RegexLib {
 	
 	//Normal block grammar

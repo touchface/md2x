@@ -12,7 +12,7 @@ import top.touchface.md2x.utils.Helper;
 import top.touchface.md2x.utils.RegexUtils;
 
 /**
- * Inline Lexer & Compiler
+ * 对行内元素进行分析和编译
  * 
  * @author touchface
  * @date 2018-09-26 20:56
@@ -23,7 +23,11 @@ public class InlineLexer {
 	private boolean inLink = false;
 	private Renderer renderer = null;
 	private InlineRules rules=null;
-	
+	/**
+	 * 对行内元素解析器进行设置
+	 * @param links 定义的链接
+	 * @param options 设置
+	 */
 	public InlineLexer(Map<String, Link> links, Options options) {
 		this.options = options;
 		this.links = links;
@@ -44,10 +48,10 @@ public class InlineLexer {
 		}
 	}
 	/**
-	 * Lexing/Compiling
+	 * 解析编译
 	 * 
-	 * @param src text in token
-	 * @return html text
+	 * @param src 行内元素
+	 * @return 解析后得到的HTML
 	 */
 	public String output(String src) {
 
@@ -246,7 +250,7 @@ public class InlineLexer {
 		return out;
 	}
 	/**
-	 * Compile Link
+	 * 编译链接(编译为a标签或img)
 	 * 
 	 * @param cap
 	 * @param link

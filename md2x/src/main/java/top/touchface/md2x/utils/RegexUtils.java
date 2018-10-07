@@ -7,7 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Regular expression matching tool
+ * 正则表达式匹配工具类
  * 
  * @author touchface
  * @date 2018-09-26 21:47
@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
 public class RegexUtils {
 
 	/**
-	 * Test whether regular expressions match strings.
+	 * 测试正则表达式与字符串是否相匹配
 	 *
 	 * @param regex  
 	 * @param string 
@@ -31,7 +31,7 @@ public class RegexUtils {
 	}
 
 	/**
-	 * Test whether regular expressions match strings.
+	 * 测试正则表达式与字符串是否相匹配
 	 * 
 	 * @param regex 
 	 * @param string 
@@ -44,12 +44,13 @@ public class RegexUtils {
 
 	/**
 	 * if flag!=Parten.MULTILINE
-	 * Get strings that matched with regular expressions.
-	 * cap[0] is the original string that matched.
-	 * cap[1...] are strings matched by subexpression.
+	 * 获取匹配到的字符串以及子表达式匹配的结果
+	 * cap[0]为匹配到的原字符串
+	 * cap[0+]为子表达式匹配到的结果
+	 * 只进行一次匹配
 	 * 
 	 * if flag==Parten.MULTILINE
-	 * Get original strings that matched
+	 * 获取字符串中所有相匹配的结果（不会返回子表达式的匹配结果）
 	 * 
 	 * 
 	 * @param string 
@@ -85,7 +86,7 @@ public class RegexUtils {
 	}
 	
 	/**
-	 * Get strings that matched with regular expressions.
+	 * 获取字符串中匹配到的字符串数组
 	 * 
 	 * @param string
 	 * @param regex
@@ -95,7 +96,7 @@ public class RegexUtils {
 		return match(string, regex, 0);
 	}
 	/**
-	 * modifying the strings that matched
+	 * 通过回调函数修改字符串
 	 * 
 	 * @param string
 	 * @param regex
@@ -116,7 +117,7 @@ public class RegexUtils {
 		
 	}
 	/**
-	 * modifying the strings that matched
+	 * 修改匹配到的字符串
 	 * 
 	 * @param string
 	 * @param regex

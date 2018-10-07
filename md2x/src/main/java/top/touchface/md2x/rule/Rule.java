@@ -2,8 +2,8 @@ package top.touchface.md2x.rule;
 import top.touchface.md2x.utils.RegexUtils;
 
 /**
- * Matching rule classes, using regular expressions to match
- * 
+ * 匹配规则类
+ *  
  * @author touchface
  * @date 2018-09-26 21:32
  */

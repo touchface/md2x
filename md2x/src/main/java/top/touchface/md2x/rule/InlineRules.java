@@ -2,7 +2,7 @@ package top.touchface.md2x.rule;
 
 
 /**
- * Inline Block Grammar
+ * 行内元素的语法
  * 
  * @author touchface
  * @date 2018-09-26 21:04

@@ -1,7 +1,7 @@
 package top.touchface.md2x.utils;
 
 /**
- * replace callback
+ * 正则表达式替换的回调函数
  * 
  * @author touchface
  * @date 2018-09-26 23:36

@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.Map;
 
 /**
- * The document that is analyzed and obtained includes token and links.
+ * 块级元素解析结果类
  * 
  * @author touchface
  * @date 2018-09-26 20:44

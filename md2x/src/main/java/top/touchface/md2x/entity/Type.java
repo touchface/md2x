@@ -1,7 +1,7 @@
 package top.touchface.md2x.entity;
 
 /**
- * Type of token
+ * 标记的类型
  * 
  * @author touchface
  * @date 2018-09-26 20:45

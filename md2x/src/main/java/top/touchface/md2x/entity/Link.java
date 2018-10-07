@@ -1,7 +1,7 @@
 package top.touchface.md2x.entity;
 
 /**
- * Link
+ * 链接类包含连接主题和链接地址
  * 
  * @author touchface
  * @date 2018-09-26 20:33

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * String tools
+ * 字符串工具
  * 
  * @author touchface
  * @date 2018-09-26 21:42
@@ -12,7 +12,7 @@ import java.util.List;
 public class StringUtils {
 	
 	/**
-	 * Splits the string array into a string with the specified connector.
+	 * 将字符串数组以特定的字符连接成一个字符串
 	 * example:
 	 * 		String arr[]={"A","B","C"};
 	 * 		String str=join(arr,"&")

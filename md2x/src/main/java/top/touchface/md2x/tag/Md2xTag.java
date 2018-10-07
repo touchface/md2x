@@ -11,7 +11,7 @@ import top.touchface.md2x.Md2x;
 import top.touchface.md2x.entity.Options;
 
 /**
- * Using custom tags in Jsp pages to implement Markdown parsing
+ * JSP自定义标签，用于在JSP页面中直接使用本解析器
  * 
  * @author touchface
  * @date 2018-09-28 13:39

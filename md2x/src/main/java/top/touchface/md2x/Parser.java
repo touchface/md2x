@@ -16,7 +16,7 @@ import top.touchface.md2x.render.TextRender;
 import top.touchface.md2x.utils.Helper;
 
 /**
- * Parsing & Compiling
+ * 解析MARKDOWN行内标记，并编译为HTML
  * 
  * @author touchface
  * @date 2018-09-26 20:28
@@ -32,8 +32,11 @@ public class Parser {
 
 	private InlineLexer inlineLexer;// 行内元素解析器
 	private InlineLexer textLexer;// 行内元素解析器
-
-
+	/**
+	 * 对解析器进行设置
+	 * 
+	 * @param options 设置
+	 */
 	public Parser(Options options) {
 		if (options != null) {
 			this.options = options;
@@ -50,11 +53,11 @@ public class Parser {
 	}
 	
 	/**
-	 * Parse Loop
+	 * 解析循环
 	 * 
-	 * @param tokens block tokens of markdwon
+	 * @param tokens MARKDOWN标记的块级元素和连接
 	 * 
-	 * @return html
+	 * @return HTML
 	 */
 	public String parse(Tokens tokens) {
 		
@@ -73,9 +76,9 @@ public class Parser {
 	}
 
 	/**
-	 * Parse Current Token
+	 * 解析当前的标记
 	 * 
-	 * @return
+	 * @return 解析结果
 	 */
 	private String parseToken() {
 
@@ -179,7 +182,7 @@ public class Parser {
 	}
 
 	/**
-	 * Parse Text Tokens
+	 * 解析文本标记
 	 *  
 	 * @return
 	 */
@@ -194,7 +197,7 @@ public class Parser {
 	}
 
 	/**
-	 * Next Token
+	 * 切换到下一个标记
 	 * 
 	 * @return
 	 */
@@ -207,7 +210,7 @@ public class Parser {
 	}
 
 	/**
-	 * Preview Next Token
+	 * 预览下一个标记
 	 * 
 	 * @return
 	 */

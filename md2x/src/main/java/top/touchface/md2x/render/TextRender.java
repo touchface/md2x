@@ -2,7 +2,7 @@ package top.touchface.md2x.render;
 
 import top.touchface.md2x.entity.Options;
 /**
- * Text render
+ * 文本渲染器
  * 
  * @author touchface
  * @date 2018-09-26 21:01

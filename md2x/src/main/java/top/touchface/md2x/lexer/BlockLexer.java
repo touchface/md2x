@@ -16,7 +16,7 @@ import top.touchface.md2x.utils.RegexUtils;
 import top.touchface.md2x.utils.StringUtils;
 
 /**
- * Markdown lexical analyzer, parsing Markdown block level elements。
+ * MARKDOWN块级元素分词器
  * 
  * @author touchface
  * @date 2018-09-26 20:50
@@ -28,7 +28,10 @@ public class BlockLexer {
 	private Tokens doc;// 解析后得到的文档对象
 	
 	private BlockRules rules;
-	
+	/**
+	 * 对分词器进行设置
+	 * @param options
+	 */
 	public BlockLexer(Options options) {
 		
 		doc = new Tokens();
@@ -49,11 +52,11 @@ public class BlockLexer {
 	}
 	
 	/**
-	 * Preprocessing
+	 * 对MARKDOWN文本进行分词处理，得到块级元素和链接
 	 * 
-	 * @param src    Markdown text.
-	 * @param option settings for lexical analyzer.
-	 * @return object with tokens and links.
+	 * @param src    MARKDOWN文本
+	 * @param option 设置
+	 * @return 结果
 	 */
 	public Tokens lex(String src) {
 		
@@ -68,11 +71,11 @@ public class BlockLexer {
 	
 	
 	/**
-	 * Lexing
+	 * 进行解析
 	 * 
-	 * @param src markdwon text
-	 * @param top 
-	 * @return object with tokens and links.
+	 * @param src MARKDOWN文本
+	 * @param top 是否为第一层级
+	 * @return 结果
 	 */
 	private Tokens token(String src, boolean top) {
 

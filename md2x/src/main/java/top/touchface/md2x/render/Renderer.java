@@ -3,7 +3,7 @@ package top.touchface.md2x.render;
 import top.touchface.md2x.entity.Options;
 
 /**
- * Abstract render
+ * 渲染器的抽象父类
  * 
  * @author touchface
  * @date 2018-09-26 21:00
