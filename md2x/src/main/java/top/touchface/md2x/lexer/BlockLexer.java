@@ -323,7 +323,7 @@ public class BlockLexer {
 				// 获取表格的每一行
 				List<String> rows = null;
 				if (cap.length > 3) {
-					rows = StringUtils.arrayToList(cap[3].replaceAll("(?: *\\\\| *)?\\\\n$", "").split("\\n"));
+					rows = StringUtils.arrayToList(cap[3].replaceAll("(?: *\\| *)?\\n$", "").split("\\n"));
 				} else {
 					rows = new ArrayList<String>();
 				}
@@ -339,7 +339,7 @@ public class BlockLexer {
 		      
 		          } else if (RegexUtils.test("^ *:-+: *$", item.align.get(i))) {
 		        	  item.align.set(i, "center");
-		          } else if (RegexUtils.test("^ *:-+ *$",item.align.get(0))) {
+		          } else if (RegexUtils.test("^ *:-+ *$",item.align.get(i))) {
 		        	  item.align.set(i, "left");
 		          } else {
 		        	  item.align.set(i, null);

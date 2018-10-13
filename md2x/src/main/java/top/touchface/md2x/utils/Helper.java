@@ -22,15 +22,19 @@ public class Helper {
 	public static List<String> splitCells(String tableRow, int count) {
 
 		String cells[] = tableRow.replaceAll("([^\\\\])\\|", "$1 |").split(" +\\| *");
+		for (int i = 0; i < cells.length; i++) {
+			cells[i] = cells[i].replaceAll("\\\\\\|", "|");
+		}
 		List<String> lcells = StringUtils.arrayToList(cells);
-
 		if (lcells.size() > count) {
-			lcells.remove(count);
+			
+			lcells=lcells.subList(0, count);
 		} else {
 			while (lcells.size() < count) {
 				lcells.add("");
 			}
 		}
+		
 		return lcells;
 	}
 	/**
