@@ -70,10 +70,11 @@ public class Md2xTag extends SimpleTagSupport {
 				content = Md2x.parseToHtml(value, this.getOptions());
 
 			}
-		} catch (RuntimeException e) {
+		} catch (Exception e) {
 			content+="<div style=\"font-family: Menlo, Monaco, Consolas;"
 					+ "border:2px solid #000;padding:1rem;\">\n";
 			content+= e.getMessage();
+			content+="<div>md2x:<a href='https://github.com/touchface/md2x'>https://github.com/touchface/md2x</a></div>\n";
 			content+="</div>\n";
 			
 		}
