@@ -13,6 +13,7 @@ import top.touchface.md2x.entity.Type;
 import top.touchface.md2x.rule.BlockRules;
 import top.touchface.md2x.utils.Helper;
 import top.touchface.md2x.utils.RegexUtils;
+import top.touchface.md2x.utils.ReplaceCallback;
 import top.touchface.md2x.utils.StringUtils;
 
 /**
@@ -22,59 +23,62 @@ import top.touchface.md2x.utils.StringUtils;
  * @date 2018-09-26 20:50
  */
 public class BlockLexer {
-	
+
 	private Options options;// 解析器的配置信息
 
 	private Tokens doc;// 解析后得到的文档对象
-	
+
 	private BlockRules rules;
+
 	/**
 	 * 对分词器进行设置
+	 * 
 	 * @param options
 	 */
 	public BlockLexer(Options options) {
-		
+
 		doc = new Tokens();
-		this.rules=new BlockRules();
+		this.rules = new BlockRules();
 		this.options = options;
 		if (this.options.pedantic) {
 			this.rules.setPedantic();
-			
-			
+
 		} else if (this.options.gfm) {
-			if(this.options.tables) {
+			if (this.options.tables) {
 				this.rules.setGfm();
 				this.rules.setGfmTables();
-			}else{
+			} else {
 				this.rules.setGfm();
 			}
 		}
 	}
-	
+
 	/**
 	 * 对MARKDOWN文本进行分词处理，得到块级元素和链接
 	 * 
-	 * @param src    MARKDOWN文本
-	 * @param option 设置
+	 * @param src
+	 *            MARKDOWN文本
+	 * @param option
+	 *            设置
 	 * @return 结果
 	 */
 	public Tokens lex(String src) {
-		
+
 		// 预处理文本
-		src = src.replaceAll("\\r\\n|\\r", "\n")
-				 .replaceAll("\\t", "    ").replaceAll("\\u00a0", " ")
-				 .replaceAll("\\u2424", "\n");
-		
+		src = src.replaceAll("\\r\\n|\\r", "\n").replaceAll("\\t", "    ").replaceAll("\\u00a0", " ")
+				.replaceAll("\\u2424", "\n");
+
 		// 执行分词，并返回值
 		return this.token(src, true);
 	}
-	
-	
+
 	/**
 	 * 进行解析
 	 * 
-	 * @param src MARKDOWN文本
-	 * @param top 是否为第一层级
+	 * @param src
+	 *            MARKDOWN文本
+	 * @param top
+	 *            是否为第一层级
 	 * @return 结果
 	 */
 	private Tokens token(String src, boolean top) {
@@ -83,7 +87,7 @@ public class BlockLexer {
 		while (src.length() > 0) {
 
 			// newline 换行
-			if (this.rules.newline!=null&&(cap =this.rules.newline.exec(src)) != null) {
+			if (this.rules.newline != null && (cap = this.rules.newline.exec(src)) != null) {
 				src = src.substring(cap[0].length());
 				if (cap[0].length() > 1) {
 					Token token = new Token();
@@ -92,7 +96,7 @@ public class BlockLexer {
 				}
 			}
 			// code 代码块
-			if (this.rules.code!=null&&(cap = this.rules.code.exec(src)) != null) {
+			if (this.rules.code != null && (cap = this.rules.code.exec(src)) != null) {
 				src = src.substring(cap[0].length());
 				String text = cap[0].replaceAll("^ {4}", "");
 				Token token = new Token();
@@ -102,7 +106,7 @@ public class BlockLexer {
 				continue;
 			}
 			// fences 代码块
-			if (this.rules.fences!=null&&(cap = this.rules.fences.exec(src)) != null) {
+			if (this.rules.fences != null && (cap = this.rules.fences.exec(src)) != null) {
 
 				src = src.substring(cap[0].length());
 				Token token = new Token();
@@ -115,7 +119,7 @@ public class BlockLexer {
 			}
 
 			// heading 分级标题
-			if (this.rules.heading!=null&&(cap = this.rules.heading.exec(src)) != null) {
+			if (this.rules.heading != null && (cap = this.rules.heading.exec(src)) != null) {
 				src = src.substring(cap[0].length());
 				Token token = new Token();
 				token.type = Type.heading;
@@ -126,7 +130,7 @@ public class BlockLexer {
 			}
 
 			// table no leading pipe (gfm)
-			if (this.rules.nptable!=null&&top && (cap = this.rules.nptable.exec(src)) != null) {
+			if (this.rules.nptable != null && top && (cap = this.rules.nptable.exec(src)) != null) {
 
 				Token item = new Token();
 				item.type = Type.table;
@@ -143,10 +147,10 @@ public class BlockLexer {
 				} else {
 					rows = new ArrayList<String>();
 				}
-				
+
 				if (item.header.size() == item.align.size()) {
 					src = src.substring(cap[0].length());
-					//解析文本居中方式
+					// 解析文本居中方式
 					for (int i = 0; i < item.align.size(); i++) {
 
 						if (RegexUtils.test("^ *-+: *$", item.align.get(i))) {
@@ -159,7 +163,7 @@ public class BlockLexer {
 							item.align.set(i, null);
 						}
 					}
-					//获取Cell中的文本
+					// 获取Cell中的文本
 					for (int i = 0; i < rows.size(); i++) {
 						item.cells.add(Helper.splitCells(rows.get(i), item.header.size()));
 					}
@@ -170,22 +174,22 @@ public class BlockLexer {
 
 			}
 			// hr 分割线
-			if (this.rules.hr!=null&&(cap = this.rules.hr.exec(src)) != null) {
+			if (this.rules.hr != null && (cap = this.rules.hr.exec(src)) != null) {
 				src = src.substring(cap[0].length());
 				Token token = new Token();
 				token.type = Type.hr;
 				this.doc.tokens.add(token);
 				continue;
 			}
-			
+
 			// blockquote 引用
-			if (this.rules.blockquote!=null&&(cap = this.rules.blockquote.exec(src)) != null) {
+			if (this.rules.blockquote != null && (cap = this.rules.blockquote.exec(src)) != null) {
 				src = src.substring(cap[0].length());
 				Token token = new Token();
 				token.type = Type.blockquote_start;
 				this.doc.tokens.add(token);
-				
-				String subsrc=RegexUtils.replaceAll(cap[0], "^ *> ?",Pattern.MULTILINE,0,"");
+
+				String subsrc = RegexUtils.replaceAll(cap[0], "^ *> ?", Pattern.MULTILINE, 0, "");
 				this.token(subsrc, top);
 				token = new Token();
 				token.type = Type.blockquote_end;
@@ -194,19 +198,18 @@ public class BlockLexer {
 			}
 
 			// list 列表
-			if (this.rules.list!=null&&(cap = this.rules.list.exec(src)) != null) {
-				
+			if (this.rules.list != null && (cap = this.rules.list.exec(src)) != null) {
+
 				src = src.substring(cap[0].length());
 				String bull = cap[2];
-				
+
 				boolean isOrdered = bull.length() > 1;
 				Token token = new Token();
 				token.type = Type.list_start;
 				token.ordered = isOrdered;
 				token.start = isOrdered ? bull : "";
 				this.doc.tokens.add(token);
-
-				// Get each top-level item.
+				
 				// 获取每一个列表项
 				cap = this.rules.item.exec(cap[0]);
 				boolean next = false;
@@ -215,60 +218,66 @@ public class BlockLexer {
 				for (int i = 0; i < l; i++) {
 
 					String item = cap[i];
-
-					// Remove the list item's bullet
-					// 删除列表项的弹头
-					// so it is seen as the next token.
-					// 因此它会被当作下一个标识
 					int space = item.length();
+					//移除列表项的标记，避免被当作下一个列表项
 					item = item.replaceFirst("^ *([*+-]|\\d+\\.) +", "");
-
-					// Outdent whatever the list item contains. Hacky
-					// 不管列表中包含的内容是什么。
-
-					if ((item.indexOf("\n ") > -1)) {
+					//移除嵌套列表前的空格，以免被识别为代码块
+					if (item.indexOf("\n ") >= 0) {
 						space -= item.length();
-						item = !this.options.pedantic ? item.replaceAll("^ {1," + space + "}", "")
-								: item.replaceAll("^ {1,4}", "");
+						
+						if (!this.options.pedantic) {
+						
+							item=RegexUtils.replaceAll(item, "^ {1," + space + "}", Pattern.MULTILINE, 0,
+									new ReplaceCallback() {
+										@Override
+										public String replace(int index, String text) {
+											// 将空格替换为""避免被解析为code
+											return "";
+										}
+									});
+						} else {
+
+							item=RegexUtils.replaceAll(item, "^ {1,4}", Pattern.MULTILINE, 0,
+									new ReplaceCallback() {
+										@Override
+										public String replace(int index, String text) {
+											// 将空格替换为""避免被解析为code
+											return "";
+										}
+									});
+						}
 					}
-
-					// Determine whether the next list item belongs here.
-					// 确定下一个列表项是否属于此处。
-					// Backpedal if it does not belong in this list.
-					// 如果它不属于此列表则返回。
-					if (this.options.sanitize && (i != (l - 1))) {
-						String b =  this.rules.bullet.exec(cap[i + 1])[0];
+					// 确定下一个列表项是否在这里。
+					// 如果它不属于此列表则还原。
+					if (this.options.smartLists && (i != (l - 1))) {
+						String b = this.rules.bullet.exec(cap[i + 1])[0];
 						if (!bull.equals(b) && !(bull.length() > 1 && b.length() > 1)) {
-							// 将特定的cap数组拼接为字符串
-
+							
 							String[] subcap = Arrays.copyOfRange(cap, i + 1, cap.length);
 							String str = StringUtils.join(subcap, "\n");
 							src = str + src;
 							i = l - 1;
 						}
 					}
-
-					// Determine whether item is loose or not.
-					// Use: /(^|\n)(?! )[^\n]+\n\n(?!\s*$)/
-					// for discount behavior.
 					boolean loose = (next || RegexUtils.test("\\n\\n(?!\\s*$)", item));
-					if (i != (l - 1) && item.length() > 0) {
-						next = (item.charAt(item.length() - 1) == '\n');
+					if (i != (l - 1)) {
+						if (item.length() > 0) {
+							next = (item.charAt(item.length() - 1) == '\n');
+						}
 						if (!loose) {
 
 							loose = next;
 						}
 					}
-
 					// Check for task list items
 					boolean isTask = RegexUtils.test("^\\[[ xX]\\] ", item);
 					boolean isChecked = false;
 					if (isTask) {
 						isChecked = item.charAt(1) != ' ';
 						item = item.replaceFirst("^\\[[ xX]\\] +", "");
-						
+
 					}
-					
+
 					token = new Token();
 					token.type = loose ? Type.loose_item_start : Type.list_item_start;
 					token.checked = isChecked;
@@ -284,12 +293,11 @@ public class BlockLexer {
 				token = new Token();
 				token.type = Type.list_end;
 				this.doc.tokens.add(token);
-
 				continue;
 			}
-			
+
 			// html
-			if (this.rules.html!=null&&(cap =this.rules.html.exec(src)) != null) {
+			if (this.rules.html != null && (cap = this.rules.html.exec(src)) != null) {
 				src = src.substring(cap[0].length());
 				Token token = new Token();
 				token.type = Type.html;
@@ -298,9 +306,9 @@ public class BlockLexer {
 				continue;
 			}
 			// def 定义的链接
-			if (this.rules.def!=null&&top && (cap =this.rules.def.exec(src)) != null) {
+			if (this.rules.def != null && top && (cap = this.rules.def.exec(src)) != null) {
 				src = src.substring(cap[0].length());
-				if (cap[3]!=null) {
+				if (cap[3] != null) {
 					cap[3] = cap[3].substring(1, cap[3].length() - 1);
 				}
 				String tag = cap[1].toLowerCase().replace("\\s+", " ");
@@ -309,9 +317,10 @@ public class BlockLexer {
 				}
 				continue;
 			}
-		    // table (gfm)
-		    if (this.rules.table!=null && this.rules.table!=null&&top && (cap =  this.rules.table.exec(src))!=null) {
-		   
+			// table (gfm)
+			if (this.rules.table != null && this.rules.table != null && top
+					&& (cap = this.rules.table.exec(src)) != null) {
+
 				Token item = new Token();
 				item.type = Type.table;
 				// 获取表头
@@ -328,35 +337,35 @@ public class BlockLexer {
 					rows = new ArrayList<String>();
 				}
 
+				if (item.header.size() == item.align.size()) {
+					src = src.substring(cap[0].length());
 
-		      if (item.header.size() == item.align.size()) {
-		        src = src.substring(cap[0].length());
-		        
-		        for (int i = 0; i < item.align.size(); i++) {
-		        	
-		          if (RegexUtils.test("^ *-+: *$",item.align.get(i))) {
-		        	  item.align.set(i, "right");
-		      
-		          } else if (RegexUtils.test("^ *:-+: *$", item.align.get(i))) {
-		        	  item.align.set(i, "center");
-		          } else if (RegexUtils.test("^ *:-+ *$",item.align.get(i))) {
-		        	  item.align.set(i, "left");
-		          } else {
-		        	  item.align.set(i, null);
-		          }
-		        }
+					for (int i = 0; i < item.align.size(); i++) {
 
-				for (int i = 0; i < rows.size(); i++) {
-					item.cells.add(Helper.splitCells(rows.get(i).replaceAll("^ *\\| *| *\\| *$",""), item.header.size()));
+						if (RegexUtils.test("^ *-+: *$", item.align.get(i))) {
+							item.align.set(i, "right");
+
+						} else if (RegexUtils.test("^ *:-+: *$", item.align.get(i))) {
+							item.align.set(i, "center");
+						} else if (RegexUtils.test("^ *:-+ *$", item.align.get(i))) {
+							item.align.set(i, "left");
+						} else {
+							item.align.set(i, null);
+						}
+					}
+
+					for (int i = 0; i < rows.size(); i++) {
+						item.cells.add(
+								Helper.splitCells(rows.get(i).replaceAll("^ *\\| *| *\\| *$", ""), item.header.size()));
+					}
+
+					this.doc.tokens.add(item);
+
+					continue;
 				}
-
-		        this.doc.tokens.add(item);
-
-		        continue;
-		      }
-		    }
+			}
 			// lheading 标题
-			if (this.rules.lheading!=null&&(cap = this.rules.lheading.exec(src)) != null) {
+			if (this.rules.lheading != null && (cap = this.rules.lheading.exec(src)) != null) {
 				src = src.substring(cap[0].length());
 				Token token = new Token();
 				token.type = Type.heading;
@@ -366,7 +375,7 @@ public class BlockLexer {
 				continue;
 			}
 			// top-level paragraph 一级段落
-			if (this.rules.paragraph!=null&&top && (cap = this.rules.paragraph.exec(src)) != null) {
+			if (this.rules.paragraph != null && top && (cap = this.rules.paragraph.exec(src)) != null) {
 				src = src.substring(cap[0].length());
 				Token token = new Token();
 				token.type = Type.paragraph;
@@ -376,7 +385,7 @@ public class BlockLexer {
 				continue;
 			}
 			// text 文本
-			if (this.rules.text!=null&&(cap = this.rules.text.exec(src)) != null) {
+			if (this.rules.text != null && (cap = this.rules.text.exec(src)) != null) {
 				// 一级文本永远不会匹配到这里，因为会被匹配为段落
 				src = src.substring(cap[0].length());
 				Token token = new Token();

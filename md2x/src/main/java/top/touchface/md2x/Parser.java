@@ -164,7 +164,7 @@ public class Parser {
 		}
 
 		case html: {
-			// TODO parse inline content if parameter markdown=1
+			
 			return this.renderer.html(this.token.text);
 		}
 
