@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
  * MARKDOWN块级元素语法
  * 
  * @author touchface
- * @date 2018-09-26 21:01
+ * date 2018-09-26 21:01
  */
 public class BlockRules{
 	

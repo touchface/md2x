@@ -1,13 +1,14 @@
 package top.touchface.md2x.utils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
- * 字符串工具
+ * 字符串处理工具
  * 
  * @author touchface
- * @date 2018-09-26 21:42
+ * date 2018-09-26 21:42
  */
 public class StringUtils {
 	
@@ -18,9 +19,9 @@ public class StringUtils {
 	 * 		String str=join(arr,"&")
 	 * 		>> str="A&B&C"
 	 * 
-	 * @param arr
-	 * @param join
-	 * @return
+	 * @param arr 字符串数组
+	 * @param join 连接符
+	 * @return 拼接好的字符串
 	 */
 	public static String join(String[] arr,String join ) {
 
@@ -40,30 +41,13 @@ public class StringUtils {
         }
 		return new String(sb);
 	}
-	/**
-	 * Parse List To Array
-	 * @param list
-	 * @return
-	 */
-	public static String[] listToArray(List<String> list) {
-		String arr[]=new String[list.size()];
-		for (int i = 0; i <list.size(); i++) {
-			arr[i]=list.get(i);
-		}
-		return arr;
-		
-	}
-	/**
-	 * Parse Array To List
-	 * @param arr
-	 * @return
+
+    /**
+	 * 将字符串Array转换为List
+	 * @param arr Array
+	 * @return List
 	 */
 	public static List<String> arrayToList(String arr[]) {
-		List<String> list=new ArrayList<String>();
-		for(String a:arr) {
-			list.add(a);
-		}
-		return list;
-		
+		return new ArrayList<>(Arrays.asList(arr));
 	}
 }

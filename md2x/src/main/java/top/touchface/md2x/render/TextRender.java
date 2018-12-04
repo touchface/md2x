@@ -5,7 +5,7 @@ import top.touchface.md2x.entity.Options;
  * 文本渲染器
  * 
  * @author touchface
- * @date 2018-09-26 21:01
+ * date 2018-09-26 21:01
  */
 public class TextRender extends HtmlRenderer{
 

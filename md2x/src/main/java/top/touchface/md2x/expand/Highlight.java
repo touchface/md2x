@@ -5,7 +5,7 @@ package top.touchface.md2x.expand;
  * （暂未实现，如有需要请继承本类进行实现，并在Options中进行设置来实现该功能）
  * 
  * @author touchface
- * @date 2018-09-26 20:47
+ * date 2018-09-26 20:47
  */
 public abstract class Highlight {
 	

@@ -6,7 +6,7 @@ import top.touchface.md2x.render.Renderer;
  * 解析器设置信息类，包含对解析器的设置参数。
  * 
  * @author touchface
- * @date 2018-09-26 20:35
+ * date 2018-09-26 20:35
  */
 public class Options implements Cloneable{
 	
@@ -34,12 +34,10 @@ public class Options implements Cloneable{
 		try {
 			return (Options)super.clone();
 		} catch (CloneNotSupportedException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		return null;
 	}
-    
-    
 
 }

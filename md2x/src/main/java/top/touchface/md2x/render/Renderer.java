@@ -6,12 +6,13 @@ import top.touchface.md2x.entity.Options;
  * 渲染器的抽象父类
  * 
  * @author touchface
- * @date 2018-09-26 21:00
+ * date 2018-09-26 21:00
+ *
  */
 public abstract class Renderer {
 	protected Options options;
 
-	public Renderer(Options options) {
+	Renderer(Options options) {
 		this.options = options;
 	}
 

@@ -5,7 +5,7 @@ package top.touchface.md2x.rule;
  * 行内元素的语法
  * 
  * @author touchface
- * @date 2018-09-26 21:04
+ * date 2018-09-26 21:04
  */
 public class InlineRules {
 	//Inline Block Grammar
