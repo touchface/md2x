@@ -23,13 +23,11 @@ import static java.util.Objects.*;
  * @author touchface
  * date 2018-09-26 20:28
  */
-public class Parser {
+class Parser {
 
     private LinkedList<Token> tokens;// BlockLexer得到的块级元素的标记
     private Token token;// 当前解析的Token
-
     private Renderer renderer;// 渲染器对象，对Token进行渲染
-
     private InlineLexer inlineLexer;// 行内元素解析器
     private InlineLexer textLexer;// 行内元素解析器
 
@@ -38,7 +36,7 @@ public class Parser {
      *
      * @param options 设置
      */
-    public Parser(Options options) {
+    Parser(Options options) {
         if (options != null) {
             if (options.renderer == null) {
                 options.renderer = new HtmlRenderer(options);

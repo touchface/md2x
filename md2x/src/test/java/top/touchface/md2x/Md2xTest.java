@@ -1,6 +1,7 @@
 package top.touchface.md2x;
 
 import java.io.*;
+import java.util.Objects;
 
 import org.junit.Test;
 
@@ -10,6 +11,7 @@ public class Md2xTest {
 
     @Test
     public void test1() {
+
         // 读取markdown文本
         String markdown=this.readMarkdown("md2x.md");
         System.out.println(markdown);
@@ -40,7 +42,7 @@ public class Md2xTest {
      */
     private String readMarkdown(String name) {
         ClassLoader classLoader=this.getClass().getClassLoader();
-        File file=new File(classLoader.getResource(name).getFile());
+        File file=new File(Objects.requireNonNull(classLoader.getResource(name)).getFile());
         if (file.isFile() && file.exists()) {
             try {
                 InputStreamReader read = new InputStreamReader(new FileInputStream(file));

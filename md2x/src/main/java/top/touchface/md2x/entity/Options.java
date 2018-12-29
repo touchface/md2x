@@ -23,7 +23,7 @@ public class Options implements Cloneable{
     public Renderer renderer=null;
     public boolean sanitize=false;
     public Sanitizer sanitizer=null;//unsupported option
-    //public boolean silent=false;
+
     public boolean smartLists=false;
     public boolean smartypants=false;
     public boolean tables=true;
